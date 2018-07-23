@@ -1,6 +1,9 @@
 # Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
 
 """Code coverage measurement plugin for Python"""
+import os
+import re
+import codecs
 
 from setuptools import setup
 
@@ -26,10 +29,29 @@ Topic :: Software Development :: Quality Assurance
 Topic :: Software Development :: Testing
 """
 
+here = os.path.abspath(os.path.dirname(__file__))
+
+
+def read(*parts):
+    print(os.path.join(here, *parts))
+    with codecs.open(os.path.join(here, *parts), 'r') as fp:
+        return fp.read()
+
+
+def find_version(*file_paths):
+    version_file = read(*file_paths)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+
 
 setup(
     name='ExcludeUntilCoveragePlugin',
-    version='0.1.0.dev0',
+    version=find_version('src', 'coverage_plugin', 'exclude_until.py'),
+    author='Hugh Sorby',
+    author_email='h.sorby@auckland.ac.nz',
     packages=['coverage_plugin',],
     package_dir={'': 'src'},
     url='https://github.com/hsorby/exclude_until_coverage_plugin/',
