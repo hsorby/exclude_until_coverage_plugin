@@ -1,4 +1,7 @@
 
+__version__ = '0.1.0'
+
+
 import re
 import coverage
 
