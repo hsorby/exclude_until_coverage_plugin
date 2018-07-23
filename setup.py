@@ -8,26 +8,26 @@ import codecs
 from setuptools import setup
 
 
-classifiers = """\
-Environment :: Console
-Intended Audience :: Developers
-License :: OSI Approved :: Apache Software License
-Operating System :: OS Independent
-Programming Language :: Python
-Programming Language :: Python :: 2
-Programming Language :: Python :: 2.7
-Programming Language :: Python :: 3
-Programming Language :: Python :: 3.4
-Programming Language :: Python :: 3.5
-Programming Language :: Python :: 3.6
-Programming Language :: Python :: 3.7
-Programming Language :: Python :: Implementation :: CPython
-Programming Language :: Python :: Implementation :: PyPy
-Programming Language :: Python :: Implementation :: Jython
-Programming Language :: Python :: Implementation :: IronPython
-Topic :: Software Development :: Quality Assurance
-Topic :: Software Development :: Testing
-"""
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: Implementation :: Jython",
+    "Programming Language :: Python :: Implementation :: IronPython",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+]
 
 here = os.path.abspath(os.path.dirname(__file__))
 
