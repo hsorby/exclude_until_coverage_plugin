@@ -16,7 +16,7 @@ A `coverage.py`_ plugin that excludes lines until a marker is found.
 
 The plugin is pip installable::
 
-    $ pip install django_coverage_plugin
+    $ pip install exclude-until-coverage-plugin
 
 To run it, add this setting to your ``.coveragerc`` file::
 
