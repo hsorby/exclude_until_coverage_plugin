@@ -1,6 +1,6 @@
 # Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
 
-__version__ = '0.2.1'
+__version__ = '0.3.0'
 
 
 import re
@@ -65,17 +65,20 @@ def patched_get_data(self):
 
     """
     self._init()
+    self._init_data(suffix=None)
+    self._post_init()
+
     plugin_name = 'exclude_until_coverage_plugin.ExcludeUntilPlugin'
-    if plugin_name in self.plugins.names:
-        exclude_until_plugin = self.plugins.names[plugin_name]
+    if plugin_name in self._plugins.names:
+        exclude_until_plugin = self._plugins.get(plugin_name)
         exclude_until_marker = 'ExcludeUntilPlugin{0}'.format(exclude_until_plugin.marker())
         if exclude_until_marker not in self.config.exclude_list:
             self.config.exclude_list.append(exclude_until_marker)
 
-    if self.collector.save_data(self.data):
+    if self._collector and self._collector.flush_data():
         self._post_save_work()
 
-    return self.data
+    return self._data
 
 
 coverage.control.Coverage.get_data = patched_get_data

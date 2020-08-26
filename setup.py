@@ -58,5 +58,5 @@ setup(
     long_description_content_type='text/x-rst',
     zip_safe=False,
     classifiers=classifiers,
-    install_requires=['coverage < 5.0']
+    install_requires=['coverage >= 5.0']
 )
