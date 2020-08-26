@@ -1,5 +1,6 @@
+# Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
 import re
@@ -7,6 +8,7 @@ import coverage
 
 from coverage import env
 from coverage.misc import join_regex
+
 
 class ExcludeUntilPlugin(coverage.plugin.CoveragePlugin):
 
@@ -63,8 +65,9 @@ def patched_get_data(self):
 
     """
     self._init()
-    if 'coverage_plugin.exclude_until.ExcludeUntilPlugin' in self.plugins.names:
-        exclude_until_plugin = self.plugins.names['coverage_plugin.exclude_until.ExcludeUntilPlugin']
+    plugin_name = 'exclude_until_coverage_plugin.ExcludeUntilPlugin'
+    if plugin_name in self.plugins.names:
+        exclude_until_plugin = self.plugins.names[plugin_name]
         exclude_until_marker = 'ExcludeUntilPlugin{0}'.format(exclude_until_plugin.marker())
         if exclude_until_marker not in self.config.exclude_list:
             self.config.exclude_list.append(exclude_until_marker)
@@ -77,7 +80,3 @@ def patched_get_data(self):
 
 coverage.control.Coverage.get_data = patched_get_data
 coverage.parser.PythonParser.lines_matching = patched_lines_matching
-
-
-def coverage_init(reg, options):
-    reg.add_file_tracer(ExcludeUntilPlugin(options))

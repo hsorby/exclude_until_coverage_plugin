@@ -1,9 +1,9 @@
 # Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
 
 """Code coverage measurement plugin for Python"""
-import os
 import re
 import codecs
+from os import path
 
 from setuptools import setup
 
@@ -14,11 +14,7 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 2",
-    "Programming Language :: Python :: 2.7",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.4",
-    "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: Implementation :: CPython",
@@ -29,12 +25,13 @@ classifiers = [
     "Topic :: Software Development :: Testing",
 ]
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = path.abspath(path.dirname(__file__))
+with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
 
 
 def read(*parts):
-    print(os.path.join(here, *parts))
-    with codecs.open(os.path.join(here, *parts), 'r') as fp:
+    with codecs.open(path.join(here, *parts), 'r') as fp:
         return fp.read()
 
 
@@ -48,17 +45,18 @@ def find_version(*file_paths):
 
 
 setup(
-    name='ExcludeUntilCoveragePlugin',
-    version=find_version('src', 'coverage_plugin', 'exclude_until.py'),
+    name='exclude-until-coverage-plugin',
+    version=find_version('src', 'exclude_until_coverage_plugin', 'exclude_until.py'),
     author='Hugh Sorby',
     author_email='h.sorby@auckland.ac.nz',
-    packages=['coverage_plugin',],
+    packages=['exclude_until_coverage_plugin'],
     package_dir={'': 'src'},
     url='https://github.com/hsorby/exclude_until_coverage_plugin/',
     license='Apache Software License',
     description='Plugin for code coverage excluding lines until marker found.',
-    long_description=open('README.rst').read(),
+    long_description=long_description,
+    long_description_content_type='text/x-rst',
     zip_safe=False,
     classifiers=classifiers,
-    install_requires=['coverage']
+    install_requires=['coverage < 5.0']
 )
