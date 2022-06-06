@@ -1,6 +1,6 @@
 # Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
 
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 
 import re
@@ -32,7 +32,7 @@ def patched_lines_matching(self, *regexes):
 
     """
     combined = join_regex(regexes)
-    if env.PY2:
+    if env.PYVERSION[0] < 3:
         combined = combined.decode("utf8")
 
     exclude_until_marker = ''
